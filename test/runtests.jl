@@ -1,6 +1,6 @@
-using QuartoDocstrings
+using QuartoDocTools
 using Test
 
-@testset "QuartoDocstrings.jl" begin
+@testset "QuartoDocTools.jl" begin
     # Write your tests here.
 end

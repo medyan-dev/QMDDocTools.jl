@@ -1,4 +1,4 @@
-module QuartoDocstrings
+module QuartoDocTools
 
 export gen_docstrings
 

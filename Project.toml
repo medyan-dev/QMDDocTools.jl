@@ -1,4 +1,4 @@
-name = "QuartoDocstrings"
+name = "QuartoDocTools"
 uuid = "c50e25eb-ade4-4c96-a757-2a1fd62cbd8c"
 authors = ["nhz2 <nhz2@cornell.edu> and contributors"]
 version = "0.1.0"
