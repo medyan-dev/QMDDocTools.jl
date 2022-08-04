@@ -159,7 +159,7 @@ function gen_docstrings(pkgmodule::Module;
             println(io, "# ", replace(filename, "\\" => "/"))
             for section in sections
                 bindingname = repr(section[begin].data[:binding])
-                println(io, "## ", bindingname)
+                println(io, "## [", bindingname, "](/docstrings/", bindingname, ".qmd)")
                 for d in section
                     println(io,docstringformater(d))
                 end
