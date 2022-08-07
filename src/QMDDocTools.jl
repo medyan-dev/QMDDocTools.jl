@@ -1,4 +1,4 @@
-module QuartoDocTools
+module QMDDocTools
 
 export gen_docstrings
 
@@ -110,7 +110,7 @@ end
     gen_docstrings(pkgmodule::Module;
         outdir="",
         filterdocstr=checkpublicdocstr,
-        docstringformater=formatdoc2qmd,
+        docstringformatter=formatdoc2qmd,
     )
 Generate the files that contain the docstrings of the input `pkgmodule`.
 The files are written to the subdirectory "docstrings" in `outdir`
@@ -118,16 +118,16 @@ The previous subdirectory "docstrings" in `outdir` is deleted
 
 Docstrings are included if defined in `pkgmodule` or its child modules.
 Docstrings are not included if `filterdocstr(d::Docs.DocStr)` returns false.
-Docstrings are formatted to quarto flavor markdown with `docstringformater(d::Docs.DocStr)`.
-Each public binding will have a file in "docstrings" with the first 32 hex of the sha256 of the binding name and .qmd
+Docstrings are formatted to quarto flavor markdown with `docstringformatter(d::Docs.DocStr)`.
+Each public binding will have a file in "docstrings" with the first 16 hex of the sha1 of the binding name and .qmd
 Each source code file in the package that contains a public docstring will also have a file in "docstrings"
 with the same name, but .jl replaced with .qmd.
-The sections of the source code files will have IDs of the first 32 hex of the sha256 of the binding name
+The sections of the source code files will have identifiers of the first 16 hex of the sha1 of the binding name.
 """
 function gen_docstrings(pkgmodule::Module;
         outdir="",
         filterdocstr=checkpublicdocstr,
-        docstringformater=formatdoc2qmd,
+        docstringformatter=formatdoc2qmd,
     )
     metadicts = Docs.meta.(getpkgmodules(pkgmodule))
     pkgpath = pkgdir(pkgmodule)
@@ -169,7 +169,7 @@ function gen_docstrings(pkgmodule::Module;
                 bindingname = repr(section[begin].data[:binding])
                 println(io, "## [`` $(bindingname) ``](/docstrings/$(myhash(bindingname)).qmd) {#$(myhash(bindingname))}")
                 for d in section
-                    println(io,docstringformater(d))
+                    println(io,docstringformatter(d))
                 end
             end
         end
@@ -182,7 +182,7 @@ function gen_docstrings(pkgmodule::Module;
             for d in section
                 typesigname = repr(d.data[:typesig])
                 println(io, "##   `````` $(typesigname) ``````{shortcodes=false}  {#$(myhash(typesigname))}")
-                println(io,docstringformater(d))
+                println(io,docstringformatter(d))
             end
         end
     end
