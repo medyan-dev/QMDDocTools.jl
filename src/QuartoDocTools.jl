@@ -3,6 +3,10 @@ module QuartoDocTools
 export gen_docstrings
 
 using DataStructures
+using Markdown
+using SHA
+
+myhash(s) = bytes2hex(sha1(s))[1:16]
 
 """
 Return a string of a Base.Docs.DocStr in Quarto style markdown
@@ -109,14 +113,16 @@ end
         docstringformater=formatdoc2qmd,
     )
 Generate the files that contain the docstrings of the input `pkgmodule`.
-The files are written to the subdirectory "docstrings" in 'outdir'
+The files are written to the subdirectory "docstrings" in `outdir`
+The previous subdirectory "docstrings" in `outdir` is deleted
 
 Docstrings are included if defined in `pkgmodule` or its child modules.
 Docstrings are not included if `filterdocstr(d::Docs.DocStr)` returns false.
 Docstrings are formatted to quarto flavor markdown with `docstringformater(d::Docs.DocStr)`.
-Each public binding will have a file in "docstrings" with the binding name and .qmd
+Each public binding will have a file in "docstrings" with the first 32 hex of the sha256 of the binding name and .qmd
 Each source code file in the package that contains a public docstring will also have a file in "docstrings"
 with the same name, but .jl replaced with .qmd.
+The sections of the source code files will have IDs of the first 32 hex of the sha256 of the binding name
 """
 function gen_docstrings(pkgmodule::Module;
         outdir="",
@@ -151,6 +157,8 @@ function gen_docstrings(pkgmodule::Module;
         end
         sortedsrcfiles[filename] = sort(dss; by=ds->(ds[begin].data[:linenumber],repr(ds[begin].data[:binding])))
     end
+    #delete old docstrings
+    rm(joinpath(outdir,"docstrings"); force=true, recursive=true)
     #write files
     for (filename, sections) in pairs(sortedsrcfiles)
         filepath = joinpath(outdir,"docstrings",filename[begin:end-2]*"qmd")
@@ -159,21 +167,21 @@ function gen_docstrings(pkgmodule::Module;
             println(io, "# ", replace(filename, "\\" => "/"))
             for section in sections
                 bindingname = repr(section[begin].data[:binding])
-                println(io, "## [", bindingname, "](/docstrings/", bindingname, ".qmd)")
+                println(io, "## [`` $(bindingname) ``](/docstrings/$(myhash(bindingname)).qmd) {#$(myhash(bindingname))}")
                 for d in section
                     println(io,docstringformater(d))
                 end
             end
         end
     end
-    for (filename, section) in pairs(bindingfiles)
-        filepath = joinpath(outdir,"docstrings",filename*".qmd")
+    for (bindingname, section) in pairs(bindingfiles)
+        filepath = joinpath(outdir,"docstrings",myhash(bindingname)*".qmd")
         mkpath(dirname(filepath))
         open(filepath,"w") do io
-            println(io, "# ", filename)
+            println(io, "# `` $(bindingname) ``")
             for d in section
                 typesigname = repr(d.data[:typesig])
-                println(io, "## ", typesigname)
+                println(io, "##   `````` $(typesigname) ``````{shortcodes=false}  {#$(myhash(typesigname))}")
                 println(io,docstringformater(d))
             end
         end
