@@ -141,6 +141,9 @@ function gen_docstrings(pkgmodule::Module;
             for d in ds
                 if filterdocstr(d)
                     absfilename = d.data[:path]
+                    if !isabspath(absfilename)
+                        error("docstring\n$d\ndoesn't have a valid path.")
+                    end
                     relfilename = get_relative_path(absfilename, pkgpath)
                     push!(srcfiles[relfilename][bindingstr],d)
                     push!(bindingfiles[bindingstr],d)
