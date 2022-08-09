@@ -39,24 +39,24 @@ Here are some examples of using `docref`
 
 ## just binding
 
-``{{< docref `Base.:+ `>}}``
+``{{< docref `Base.:+`>}}``
 
 ## binding and sig in one code block space separated
 
-``{{< docref ` Base.:+ Tuple{MEDYAN.Context, Any}`>}}``
+``{{< docref `Base.:+ Tuple{MEDYAN.Context, Any}`>}}``
 
 ## src and binding
 
-``{{< docref `/docstrings/src/context.qmd` ` Base.:+ `>}}``
+``{{< docref `/docstrings/src/context.qmd` `Base.:+`>}}``
 
 ## label and binding
 
-``{{< docref "test" ` Base.:+ `>}}``
+``{{< docref "test" `Base.:+ `>}}``
 
 ## label and binding and sig in one code block space separated
 
-``{{< docref "test" ` Base.:+  Tuple{MEDYAN.Context, Any}`>}}``
+``{{< docref "test" `Base.:+  Tuple{MEDYAN.Context, Any}`>}}``
 
 ## label and src and binding
 
-``{{< docref "test" `/docstrings/src/context.qmd` ` Base.:+ `>}}``
+``{{< docref "test" `/docstrings/src/context.qmd` `Base.:+`>}}``
