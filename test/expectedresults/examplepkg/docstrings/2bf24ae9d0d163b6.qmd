@@ -1,0 +1,7 @@
+# `` ExamplePkg.ExamplePkg ``
+##   `````` Union{} ``````{shortcodes=false}  {#b2cfd89fb0d1b9c6}
+:::{.callout-note appearance="minimal"}
+Module doc string
+
+:::
+

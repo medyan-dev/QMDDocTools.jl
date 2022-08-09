@@ -1,0 +1,7 @@
+# src/ExamplePkg.jl
+## [`` ExamplePkg.ExamplePkg ``](/docstrings/2bf24ae9d0d163b6.qmd) {#2bf24ae9d0d163b6}
+:::{.callout-note appearance="minimal"}
+Module doc string
+
+:::
+

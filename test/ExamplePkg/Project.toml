@@ -1,0 +1,4 @@
+name = "ExamplePkg"
+uuid = "c0503078-8775-48d8-b8d5-ef9ee2a8137b"
+authors = ["nhz2 <nhz2@cornell.edu>"]
+version = "0.1.0"
