@@ -51,7 +51,7 @@ Here are some examples of using `docref`
 
 ## label and binding
 
-``{{< docref "test" `Base.:+ `>}}``
+``{{< docref "test" `Base.:+`>}}``
 
 ## label and binding and sig in one code block space separated
 
