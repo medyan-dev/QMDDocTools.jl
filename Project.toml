@@ -9,4 +9,5 @@ Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
 SHA = "ea8e919c-243c-51af-8825-aaa63cd721ce"
 
 [compat]
+DataStructures = "0.18"
 julia = "1.7"
