@@ -7,7 +7,7 @@ An opinionated set of tools to help document large Julia packages with [Quarto](
 This package doesn't aim to help integrate individual Quarto documents into an existing Documenter.jl generated site. 
 Instead it helps integrate a Julia package's docstrings as part of a Quarto generated site.
 
-
+## Julia functions
 
 ```julia
     gen_docstrings(pkgmodule::Module;
@@ -29,6 +29,7 @@ Each source code file in the package that contains a public docstring will also 
 with the same name, but .jl replaced with .qmd.
 The sections of the source code files will have identifiers of the first 16 hex of the sha1 of the binding name.
 
+## `docref` filter
 
 To link to the docstrings use the `docref` filter defined in `_extensions/docref/docref.lua`
 
