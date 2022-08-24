@@ -1,0 +1,38 @@
+---
+title: "About"
+---
+
+Here are some examples of using the `docref` filter
+
+
+## Just binding
+
+[`ExamplePkg.ExamplePkg`](@ref)
+
+``[`ExamplePkg.ExamplePkg`](@ref)``
+
+## Binding and sig in one code block # separated
+
+Note, sig is space sensitive.
+
+[`ExamplePkg.ExamplePkg#Tuple{MEDYAN.Context, Any}`](@ref)
+
+``[`ExamplePkg.ExamplePkg#Tuple{MEDYAN.Context, Any}`](@ref)``
+
+## Label and binding
+
+[test](@ref "#ExamplePkg.ExamplePkg")
+
+``[test](@ref "#ExamplePkg.ExamplePkg")``
+
+## Label and binding and sig in one code block # separated
+
+[test](@ref "#ExamplePkg.ExamplePkg#Tuple{MEDYAN.Context, Any}")
+
+``[test](@ref "#ExamplePkg.ExamplePkg#Tuple{MEDYAN.Context, Any}")``
+
+## Label and src and binding
+
+[test](@ref "/docstrings/src/ExamplePkg.qmd#ExamplePkg.ExamplePkg")
+
+``[test](@ref "/docstrings/src/ExamplePkg.qmd#ExamplePkg.ExamplePkg")``

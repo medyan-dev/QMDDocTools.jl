@@ -30,33 +30,62 @@ with the same name, but .jl replaced with .qmd.
 The sections of the source code files will have identifiers of the first 16 hex of the sha1 of the binding name.
 
 
-To link to the docstrings use the `docref` shortcode defined in `docref.lua`
+To link to the docstrings use the `docref` filter defined in `_extensions/docref/docref.lua`
 
-See <https://quarto.org/docs/extensions/shortcodes.html> for general info on using short codes.
+This filter matches to any links with a `@ref` target. It is mostly compatible with `@ref` in julia flavored markdown, with a few differences, for one, it cannot be used to link to other sections. Use quarto's built-in features for that: see <https://quarto.org/docs/websites/index.html#linking>
 
-Here are some examples of using `docref`
+Also, it is better to write the full binding, including all modules.
+
+You can add a meta section defining CurrentModule to the top of a file.
+
+For example:
+
+```
+---
+CurrentModule: MEDYAN
+---
+```
+
+Then if a binding referenced in the file doesn't have any periods, `MEDYAN.` in this example is prepended to the binding.
+
+Source code file names shouldn't contain any # characters, or any characters that could be an issue being in a url.
+
+See <https://quarto.org/docs/extensions/filters.html> for more info on using filters.
+
+Here is an example `format` section of a `_quarto.yml` file.
+
+```
+format:
+  html:
+    filters:
+      - docref.lua
+      - quarto
+    theme: cosmo
+    css: styles.css
+    toc: true
+```
+
+Here are some examples of using the `docref` filter
 
 
-## just binding
+## Just binding
 
-``{{< docref `Base.:+`>}}``
+``[`Base.:+`](@ref)``
 
-## binding and sig in one code block space separated
+## Binding and sig in one code block # separated
 
-``{{< docref `Base.:+ Tuple{MEDYAN.Context, Any}`>}}``
+Note, sig is space sensitive.
 
-## src and binding
+``[`Base.:+#Tuple{MEDYAN.Context, Any}`](@ref)``
 
-``{{< docref `/docstrings/src/context.qmd` `Base.:+`>}}``
+## Label with binding
 
-## label and binding
+``[test](@ref "#MEDYAN.Context")``
 
-``{{< docref "test" `Base.:+`>}}``
+## Label with binding and sig in one code block # separated
 
-## label and binding and sig in one code block space separated
+``[test](@ref "#Base.:+#Tuple{MEDYAN.Context, Any}")``
 
-``{{< docref "test" `Base.:+  Tuple{MEDYAN.Context, Any}`>}}``
+## Label with src and binding
 
-## label and src and binding
-
-``{{< docref "test" `/docstrings/src/context.qmd` `Base.:+`>}}``
+``[test](@ref "/docstrings/src/context.qmd#Base.:+")``

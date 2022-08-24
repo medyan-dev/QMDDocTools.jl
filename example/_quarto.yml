@@ -1,0 +1,22 @@
+project:
+  type: website
+
+website:
+  title: "example"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    filters:
+      - ../_extensions/docref/docref.lua
+      - quarto
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

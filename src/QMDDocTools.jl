@@ -167,6 +167,10 @@ function gen_docstrings(pkgmodule::Module;
         filepath = joinpath(outdir,"docstrings",filename[begin:end-2]*"qmd")
         mkpath(dirname(filepath))
         open(filepath,"w") do io
+            println(io, "---")
+            println(io, "CurrentModule: $pkgmodule")
+            println(io, "---")
+            println(io)
             println(io, "# ", replace(filename, "\\" => "/"))
             for section in sections
                 bindingname = repr(section[begin].data[:binding])
@@ -181,6 +185,10 @@ function gen_docstrings(pkgmodule::Module;
         filepath = joinpath(outdir,"docstrings",myhash(bindingname)*".qmd")
         mkpath(dirname(filepath))
         open(filepath,"w") do io
+            println(io, "---")
+            println(io, "CurrentModule: $pkgmodule")
+            println(io, "---")
+            println(io)
             println(io, "# `` $(bindingname) ``")
             for d in section
                 typesigname = repr(d.data[:typesig])
