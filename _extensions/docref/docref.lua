@@ -1,4 +1,5 @@
 -- local logging = require 'logging'
+local text = require 'text'
 
 local CurrentModule = ""
 
@@ -11,7 +12,18 @@ local function get_CurrentModule(meta)
 end
 
 local function myhash(in_text)
-    return string.sub(pandoc.utils.sha1(in_text),1,16)
+    -- replace all non a-z A-Z 0-9 - _ and . bytes with -
+    local t1 = string.gsub(in_text, "[^a-zA-Z0-9%-%.%_]" ,"-")
+    -- make lower case
+    local t2 = text.lower(t1)
+    -- make sure the string starts with a letter.
+    local t3 = string.match(t2, "[a-z].*")
+    local hash_text = string.sub(pandoc.utils.sha1(in_text),1,16)
+    if t3 then
+        return t3 .. "-" .. hash_text
+    else
+        return hash_text
+    end
 end
 
 local function docref(el)

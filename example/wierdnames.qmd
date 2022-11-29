@@ -1,0 +1,20 @@
+---
+title: "Edge Cases"
+---
+
+Here are some examples of using the `docref` filter with non ascii function names
+
+
+## Just binding
+
+[`ExamplePkg.🧇`](@ref)
+
+``[`ExamplePkg.🧇`](@ref)``
+
+[`ExamplePkg.🧇foo`](@ref)
+
+``[`ExamplePkg.🧇foo`](@ref)``
+
+[`ExamplePkg.foo🧇`](@ref)
+
+``[`ExamplePkg.foo🧇`](@ref)``

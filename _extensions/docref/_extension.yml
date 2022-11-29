@@ -1,6 +1,6 @@
 title: Docref
 author: medyan-dev
-version: 1.0.0
+version: 1.1.0
 contributes:
   filters:
     - docref.lua
