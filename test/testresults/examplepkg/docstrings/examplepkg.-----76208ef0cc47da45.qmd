@@ -1,0 +1,11 @@
+---
+CurrentModule: ExamplePkg
+---
+
+# `` ExamplePkg.🧇 ``
+##   `````` Tuple{} ``````{shortcodes=false}  {#tuple---3937a4f1811c9dc1}
+:::{.callout-note appearance="minimal"}
+This function name is an emoji
+
+:::
+

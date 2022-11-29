@@ -3,9 +3,27 @@ CurrentModule: ExamplePkg
 ---
 
 # src/ExamplePkg.jl
-## [`` ExamplePkg.ExamplePkg ``](/docstrings/2bf24ae9d0d163b6.qmd) {#2bf24ae9d0d163b6}
+## [`` ExamplePkg.ExamplePkg ``](/docstrings/examplepkg.examplepkg-2bf24ae9d0d163b6.qmd) {#examplepkg.examplepkg-2bf24ae9d0d163b6}
 :::{.callout-note appearance="minimal"}
 Module doc string
+
+:::
+
+## [`` ExamplePkg.🧇 ``](/docstrings/examplepkg.-----76208ef0cc47da45.qmd) {#examplepkg.-----76208ef0cc47da45}
+:::{.callout-note appearance="minimal"}
+This function name is an emoji
+
+:::
+
+## [`` ExamplePkg.🧇foo ``](/docstrings/examplepkg.----foo-0a256522fc4fef1b.qmd) {#examplepkg.----foo-0a256522fc4fef1b}
+:::{.callout-note appearance="minimal"}
+This function name has an emoji at the start
+
+:::
+
+## [`` ExamplePkg.foo🧇 ``](/docstrings/examplepkg.foo-----7ad542a3f033bf36.qmd) {#examplepkg.foo-----7ad542a3f033bf36}
+:::{.callout-note appearance="minimal"}
+This function name has an emoji at the end
 
 :::
 

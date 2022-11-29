@@ -6,7 +6,34 @@ using DataStructures
 using Markdown
 using SHA
 
-myhash(s) = bytes2hex(sha1(s))[1:16]
+function myhash(in_text::String)
+    # replace all non a-z A-Z 0-9 - _ and . bytes with -
+    # note: lua is not unicode aware, so do this with raw bytes.
+    hash_text = bytes2hex(sha1(in_text))[1:16]
+    raw_in_text = Vector{UInt8}(in_text)
+    a_to_z = UInt8('a'):UInt8('z')
+    A_to_Z = UInt8('A'):UInt8('Z')
+    numbers = UInt8('0'):UInt8('9')
+    t1 = map(raw_in_text) do c
+        if c in (a_to_z ∪ A_to_Z ∪ numbers ∪ UInt8('_') ∪ UInt8('-') ∪ UInt8('.'))
+            if c in A_to_Z
+                c+(UInt8('a')-UInt8('A'))
+            else
+                c
+            end
+        else
+            UInt8('-')
+        end
+    end
+    # make sure the string starts with a letter.
+    firstletter = findfirst(in(a_to_z), t1)
+    if !isnothing(firstletter)
+        t3 = String(t1[firstletter:end])
+        t3 * "-" * hash_text
+    else
+        hash_text
+    end
+end
 
 """
 Return a string of a Base.Docs.DocStr in Quarto style markdown
