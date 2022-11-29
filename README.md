@@ -24,10 +24,10 @@ The previous subdirectory "docstrings" in `outdir` is deleted
 Docstrings are included if defined in `pkgmodule` or its child modules.
 Docstrings are not included if `filterdocstr(d::Docs.DocStr)` returns false.
 Docstrings are formatted to quarto flavor markdown with `docstringformatter(d::Docs.DocStr)`.
-Each public binding will have a file in "docstrings" with the first 16 hex of the sha1 of the binding name and .qmd
+Each public binding will have a file in "docstrings" with a filename of a transformed binding name ending in ".qmd".
 Each source code file in the package that contains a public docstring will also have a file in "docstrings"
 with the same name, but .jl replaced with .qmd.
-The sections of the source code files will have identifiers of the first 16 hex of the sha1 of the binding name.
+The sections of the source code files will have identifiers matching the transformed binding names.
 
 ## `docref` filter
 
