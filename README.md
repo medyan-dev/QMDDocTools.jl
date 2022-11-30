@@ -1,6 +1,6 @@
 # QMDDocTools
 
-[![Build Status](https://github.com/medyan-dev/QuartoDocTools.jl/workflows/CI/badge.svg)](https://github.com/medyan-dev/QuartoDocTools.jl/actions)
+[![Build Status](https://github.com/medyan-dev/QMDDocTools.jl/workflows/CI/badge.svg)](https://github.com/medyan-dev/QMDDocTools.jl/actions)
 
 An opinionated set of tools to help document large Julia packages with [Quarto](https://quarto.org/)
 
