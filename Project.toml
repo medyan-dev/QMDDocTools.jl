@@ -1,7 +1,7 @@
 name = "QMDDocTools"
 uuid = "c50e25eb-ade4-4c96-a757-2a1fd62cbd8c"
 authors = ["nhz2 <nhz2@cornell.edu> and contributors"]
-version = "1.1.0"
+version = "1.1.1"
 
 [deps]
 DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"

@@ -5,3 +5,5 @@
 /.vscode/
 /test/Manifest.toml
 /Manifest.toml
+
+/.luarc.json
