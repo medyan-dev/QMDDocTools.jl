@@ -5,6 +5,7 @@ export gen_docstrings
 using DataStructures
 using Markdown
 using SHA
+using REPL: REPL
 
 function myhash(in_text::String)
     # replace all non a-z A-Z 0-9 - _ and . bytes with -

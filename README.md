@@ -7,6 +7,11 @@ An opinionated set of tools to help document large Julia packages with [Quarto](
 This package doesn't aim to help integrate individual Quarto documents into an existing Documenter.jl generated site. 
 Instead it helps integrate a Julia package's docstrings as part of a Quarto generated site.
 
+## Warning: QMDDocTools may be incompatible with a future release of Julia.
+
+QMDDocTools uses a number of internal implementation details of the Julia documentation system.
+These might break in a future release of Julia
+
 ## Julia functions
 
 ```julia
