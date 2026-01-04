@@ -2,7 +2,6 @@ module QMDDocTools
 
 export gen_docstrings
 
-using DataStructures
 using Markdown
 using SHA
 using REPL: REPL
@@ -159,8 +158,8 @@ function gen_docstrings(pkgmodule::Module;
     )
     metadicts = Docs.meta.(getpkgmodules(pkgmodule))
     pkgpath = pkgdir(pkgmodule)
-    srcfiles = DefaultDict{String, DefaultDict{String, Vector{Docs.DocStr}}}(()->(DefaultDict{String, Vector{Docs.DocStr}}([])))
-    bindingfiles = DefaultDict{String, Vector{Docs.DocStr}}(()->[])
+    srcfiles = Dict{String, Dict{String, Vector{Docs.DocStr}}}()
+    bindingfiles = Dict{String, Vector{Docs.DocStr}}()
     for metadict in metadicts
         for (binding, md) in metadict
             #add file for binding
@@ -173,8 +172,15 @@ function gen_docstrings(pkgmodule::Module;
                         error("docstring\n$d\ndoesn't have a valid path.")
                     end
                     relfilename = get_relative_path(absfilename, pkgpath)
-                    push!(srcfiles[relfilename][bindingstr],d)
-                    push!(bindingfiles[bindingstr],d)
+                    push!(
+                        get!(
+                            Vector{Docs.DocStr},
+                            get!(Dict{String, Vector{Docs.DocStr}}, srcfiles, relfilename),
+                            bindingstr,
+                        ),
+                        d,
+                    )
+                    push!(get!(Vector{Docs.DocStr}, bindingfiles, bindingstr), d)
                 end
             end
         end
